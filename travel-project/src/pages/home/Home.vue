@@ -1,5 +1,5 @@
 <template>
-  <div>home</div>
+  <div>home你好</div>
 </template>
 
 <script>
