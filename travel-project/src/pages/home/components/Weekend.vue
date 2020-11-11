@@ -2,7 +2,7 @@
   <div>
     <div class="title">周末去哪儿</div>
     <ul>
-      <li class="item border-bottom" v-for="(item,index) of recommendList" :key="index">
+      <li class="item border-bottom" v-for="(item,index) of list" :key="index">
           <div class="item-img-wrapper">
             <img :src="item.imgUrl" alt="" class="item-img" />
           </div>
@@ -18,18 +18,9 @@
 <script>
 export default {
   name: "HomeWeekend",
-  data() {
-    return {
-      recommendList:[
-        {
-          id:'0001',
-          imgUrl:'https://imgs.qunarzz.com/vs_ceph_vcimg/f03f5ac90ae59d0d9c6332a2bfd9782e.jpeg',
-          title:'大连圣亚海洋世界',
-          desc:'浪漫大连首站,浪漫的海洋主题乐园'
-        }
-      ]
-    }
-  },
+  props:{
+    list:Array //从父组件接受到的数组
+  }
 };
 </script>
 
@@ -39,11 +30,10 @@ export default {
   line-height: 0.8rem;
   background: #eee;
   text-indent: 0.2rem;
-  margin-top: 0.2rem;
 .item-img-wrapper
   height 0
   overflow hidden
-  padding-bottom 33.9%
+  padding-bottom 37.09%
   .item-img 
     width 100% //宽度在weekend组件内不再定死
   .item-info

@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
-    <swiper ref="mySwiper" :options="swiperOptions">
+    <swiper ref="mySwiper" :options="swiperOptions" v-if="showSwiper">
       <swiper-slide
-        v-for="(item,index) of swiperList" :key="index"><img
+        v-for="(item,index) of list" :key="index"><img
           class="swiper-img"
           :src="item.imgUrl"
           alt=""
@@ -15,21 +15,22 @@
 <script>
 export default {
   name: "HomeSwiper",
+  props:{
+    list:Array
+  },
   data() {
     return {
       swiperOptions: {
         pagination: ".swiper-pagination",
         loop:true
-      },
-      swiperList:[{
-        id:'0001',
-        imgUrl:'https://imgs.qunarzz.com/vs_ceph_vcimg/f03f5ac90ae59d0d9c6332a2bfd9782e.jpeg'
-      },{
-        id:'0002',
-        imgUrl:'https://imgs.qunarzz.com/vs_ceph_vcimg/569cae4ae98e9793f7341e85eed73c54.jpeg'
-      }]
+      }
     }
-  }
+  },
+  computed: {
+    showSwiper(){
+      return this.list.length
+    }
+  },
 };
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="icons">
-    <swiper ref="mySwiper">
+    <swiper ref="mySwiper" :options="swiperOptions">
       <swiper-slide v-for="(page,index) of pages" :key="index">
         <div class="icon" v-for="(item,index) of page" :key="index">
           <div class="icon-img">
@@ -20,50 +20,20 @@
 <script>
 export default {
   name: "HomeIcons",
+  props:{
+    list:Array
+  },
   data() {
     return {
-      iconList:[{
-        id:'0001',
-        imgUrl:'//s.qunarzz.com/homenode/images/touchheader/hotel.png',
-        desc:'热门景点'
-      },{
-        id:'0002',
-        imgUrl:'//s.qunarzz.com/homenode/images/touchheader/flight.png',
-        desc:'机票'
-      },{
-        id:'003',
-        imgUrl:'//s.qunarzz.com/homenode/images/touchheader/train.png',
-        desc:'火车票'
-      },
-      {
-        id:'004',
-        imgUrl:'//s.qunarzz.com/homenode/images/touchheader/train.png',
-        desc:'火车票'
-      },
-      {
-        id:'005',
-        imgUrl:'//s.qunarzz.com/homenode/images/touchheader/train.png',
-        desc:'火车票'
-      },
-      {
-        id:'006',
-        imgUrl:'//s.qunarzz.com/homenode/images/touchheader/train.png',
-        desc:'火车票'
-      },{
-        id:'007',
-        imgUrl:'//s.qunarzz.com/homenode/images/touchheader/train.png',
-        desc:'火车票'
-      },{
-        id:'008',
-        imgUrl:'//s.qunarzz.com/homenode/images/touchheader/train.png',
-        desc:'火车票'
-      }]
+      swiperOptions:{
+        autoplay:false
+      }
     }
   },
   computed: {
     pages(){
       const pages=[]
-      this.iconList.forEach((item,index)=>{
+      this.list.forEach((item,index)=>{
         const page = Math.floor(index/8) //遍历iconList下的每一个数据,用索引除以8计算应该放到第几个页面上前8个item都放到第一个页面上
         if(!pages[page]){
           pages[page]=[]

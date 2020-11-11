@@ -2,7 +2,7 @@
   <div>
     <div class="title">热销推荐</div>
     <ul>
-      <li class="item border-bottom" v-for="(item,index) of recommendList" :key="index">
+      <li class="item border-bottom" v-for="(item,index) of list" :key="index">
           <img :src="item.imgUrl" alt="" class="item-img" />
         <div class="item-info">
           <p class="item-title">{{item.title}}</p>
@@ -17,17 +17,8 @@
 <script>
 export default {
   name: "HomeRecommend",
-  data() {
-    return {
-      recommendList:[
-        {
-          id:'0001',
-          imgUrl:'//img1.qunarzz.com/sight/p0/1507/45/b74377c618d5306b709ceaf859f8f507.water.jpg_256x160_78e0a6a5.jpg',
-          title:'大连圣亚海洋世界',
-          desc:'浪漫大连首站,浪漫的海洋主题乐园'
-        }
-      ]
-    }
+  props:{
+    list:Array
   },
 };
 </script>
