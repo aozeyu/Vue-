@@ -23,10 +23,10 @@ export default {
       },
       swiperList:[{
         id:'0001',
-        imgUrl:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3740323779,2777059388&fm=26&gp=0.jpg'
+        imgUrl:'https://imgs.qunarzz.com/vs_ceph_vcimg/f03f5ac90ae59d0d9c6332a2bfd9782e.jpeg'
       },{
         id:'0002',
-        imgUrl:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3427169086,3097665420&fm=26&gp=0.jpg'
+        imgUrl:'https://imgs.qunarzz.com/vs_ceph_vcimg/569cae4ae98e9793f7341e85eed73c54.jpeg'
       }]
     }
   }
@@ -40,8 +40,7 @@ export default {
 
 .wrapper {
   width: 100%;
-  height: 0;
-  padding-bottom: 31.25%;
+  height: 31.25%;
   background: #eee;
 
   .swiper-img {
