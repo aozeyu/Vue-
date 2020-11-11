@@ -82,9 +82,9 @@ export default {
 .icons >>> .swiper-container
   height 0
   padding-bottom 50%
-
-
-.icon 
+.icons
+  margin-top .1rem  
+ .icon 
     height: 0; // 高度由子元素撑开
     width: 25%;
     float: left;
