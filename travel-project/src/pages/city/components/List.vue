@@ -17,10 +17,10 @@
         </div>
       </div>
     </div>
-    <div class="area" v-for="(item,key) of cities" :key="key">
-      <div class="title border-topbottom" >A</div>
+    <div class="area" v-for="(item,key) of cities" :key="key" :ref="key">
+      <div class="title border-topbottom" >{{key}}</div>
       <div class="item-list">
-        <div class="item border-bottom" v-for="(innerItem,index) of item" :key="index">
+        <div class="item border-bottom" v-for="innerItem of item" :key="innerItem.id">
           {{innerItem.name}} 
         </div>
       </div>
@@ -35,11 +35,20 @@ export default {
   name: "CityList",
   props:{
     cities:Object,
-    hot:Array //hot只是父组件传过来的代表着hotCites的别名而已
+    hot:Array,
+    letter:String//hot只是父组件传过来的代表着hotCites的别名而已
   },
   mounted() {
     this.scroll = new BetterScroll(this.$refs.wrapper) //this.$refs.wrapper代表获取到的dom元素
   },
+  watch: {
+    letter(){
+      if(this.letter){
+        const element = this.$refs[this.letter][0]
+        this.scroll.scrollToElement(element)
+      }
+    }
+  }
 };
 </script>
 
