@@ -1,6 +1,6 @@
 <template>
   <div>
-    <home-header></home-header> 
+    <home-header></home-header>
     <home-swiper :list="swiperList"></home-swiper>
     <home-icons :list="iconList"></home-icons>
     <home-recommend :list="recommendList"></home-recommend>
@@ -15,6 +15,7 @@ import HomeIcons from './components/Icons'
 import HomeRecommend from './components/Recommend'
 import HomeWeekend from './components/Weekend'
 import axios from 'axios'
+import {mapState} from 'vuex'
 export default {
   name: "Home",
   components:{
@@ -25,19 +26,30 @@ export default {
     HomeWeekend
   },
   mounted() {
+    this.lastCity = this.city //将当前城市保存下来
     this.getHomeInfo()
   },
   data() {
     return {
+      lastCity:'',
       swiperList:[],
       iconList:[],
       recommendList:[],
       weekendList:[]
     } //这些数据都从父组件传给子组件
   },
+  computed:{
+    ...mapState(['city'])
+  },
+  activated() {
+    if (this.lastCity !== this.city){
+      this.lastCity = this.city //更新城市
+      this.getHomeInfo()
+    }
+  },
   methods: {
     getHomeInfo(){
-      axios.get('/api/index.json').then(this.getHomeInfoSucc) //成功后用then回调
+      axios.get('/api/index.json?city='+this.city).then(this.getHomeInfoSucc) //成功后用then回调
     },
     getHomeInfoSucc(res){
       res=res.data
