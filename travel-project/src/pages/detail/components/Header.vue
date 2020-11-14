@@ -15,31 +15,34 @@
 <script>
   export default {
     name: "DetailHeader",
-    data(){
+    data() {
       return {
         showAbs: true,
-        opacityStyle:{
+        opacityStyle: {
           opacity: 0
         }
       }
     },
-    methods:{
-      handleScroll(){
+    methods: {
+      handleScroll() {
         const top = document.documentElement.scrollTop
-        if (top>60){
-          let opacity = top /140
-          opacity = opacity>1?1:opacity//由于top在60和140之间故比值在0~1之间
+        if (top > 60) {
+          let opacity = top / 140
+          opacity = opacity > 1 ? 1 : opacity//由于top在60和140之间故比值在0~1之间
           this.opacityStyle = {
             opacity
           }
           this.showAbs = false
-        }else {
+        } else {
           this.showAbs = true
         }
       }
     },
     activated() {
-      window.addEventListener('scroll',this.handleScroll)
+      window.addEventListener('scroll', this.handleScroll)
+    },
+    deactivated() {
+      window.removeEventListener('scroll', this.handleScroll)
     }
   }
 </script>
