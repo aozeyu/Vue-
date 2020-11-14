@@ -1,6 +1,6 @@
 <template>
     <div>
-      <detail-banner></detail-banner>
+      <detail-banner :bannerImg="bannerImg" :bannerImgs="gallaryImgs" :sightName="sightName"></detail-banner>
       <detail-header></detail-header>
       <div class="content">
         <detail-list :list="list"></detail-list>
@@ -12,7 +12,9 @@
   import DetailBanner from './components/Banner'
   import DetailHeader from './components/Header'
   import DetailList from './components/List'
-    export default {
+  import axios from 'axios'
+
+  export default {
       name: "Detail",
       components:{
           DetailBanner,
@@ -21,32 +23,38 @@
       },
       data(){
         return {
-          list:[{
-            title:'成人票',
-            children:[
-              {
-                title: '成人三观联票',
-                children:[{
-                  title: '成人三观联票 - 某一连锁店销售'
-                }]
-              },
-              {
-                title: '成人五官联票'
-              }
-            ]
-          },{
-            title: '学生票'
-          },{
-            title: '儿童票'
-          },{
-            title: '特惠票'
-          }]
+          sightName:'',
+          bannerImg:'',
+          gallaryImgs:[],
+          list:[]
         }
+      },
+      methods:{
+        getDetailInfo(){
+          axios.get('/api/detail.json',{
+            params:{
+              id:this.$route.params.id
+            }
+          }).then(this.handleGetDataSucc)
+        },
+        handleGetDataSucc(res){
+          res = res.data //从外向里去找数据
+          if (res.ret && res.data){
+            const data = res.data
+            this.sightName = data.sightName
+            this.bannerImg = data.bannerImg
+            this.gallaryImgs = data.gallaryImgs
+            this.list = data.categoryList//当前组件的sightName等于数据中的signtName
+          }
+        }
+      },
+      mounted() {
+        this.getDetailInfo()
       }
     }
 </script>
 
-<style scoped lang="stylus">
+<style lang="stylus" scoped>
 .content
   height 50rem
 </style>
