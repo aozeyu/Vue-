@@ -2,14 +2,14 @@
   <div>
     <div class="title">热销推荐</div>
     <ul>
-      <li class="item border-bottom" v-for="(item,index) of list" :key="index">
+      <router-link tag="li" :to="'/detail/'+item.id" class="item border-bottom" v-for="(item,index) of list" :key="index">
           <img :src="item.imgUrl" alt="" class="item-img" />
         <div class="item-info">
           <p class="item-title">{{item.title}}</p>
           <p class="item-desc">{{item.desc}}</p>
           <button class="item-button">查看详情</button>
         </div>
-      </li>
+      </router-link>
     </ul>
   </div>
 </template>
@@ -25,7 +25,7 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~styles/mixins.styl';
-.title 
+.title
   line-height: 0.8rem;
   background: #eee;
   text-indent: 0.2rem;
@@ -34,7 +34,7 @@ export default {
   display flex
   height 1.9rem
   overflow hidden
-  .item-img 
+  .item-img
     width 1.7rem
     height 1.7rem
     padding .1rem
